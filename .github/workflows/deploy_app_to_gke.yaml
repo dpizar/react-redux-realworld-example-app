@@ -2,9 +2,8 @@ name: Deploy realworld-app to GKE
 
 on:
   push:
-    paths:
-      - 'react_redux_app_deploy/**'
-    branches: [ main ]
+    branches:
+      - 'master'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
