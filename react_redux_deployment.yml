@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-redux-app
+  labels:
+    run: react-redux-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: react-redux-app
+  template:
+    metadata:
+      labels:
+        run: react-redux-app
+    spec:
+      containers:
+      - name: react-redux-app
+        image: dpizar/react-redux:latest
+        ports:
+        - containerPort: 4100
