@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "reactReduxChart.fullname" . }}
+  name: {{ include "react-redux-chart.fullname" . }}
   labels:
-    {{- include "reactReduxChart.labels" . | nindent 4 }}
+    {{- include "react-redux-chart.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "reactReduxChart.fullname" . }}
+    name: {{ include "react-redux-chart.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:
