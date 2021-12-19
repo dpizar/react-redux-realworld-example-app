@@ -12,7 +12,7 @@ on:
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
   GITHUB_SHA: ${{ github.sha }}
-  GKE_ZONE: us-central1
+  GKE_REGION: us-central1
   GKE_CLUSTER: gke-ycit-tformers-default-dev
   IMAGE: react-redux
   DEPLOYMENT_NAME: react-redux-chart    
@@ -62,7 +62,7 @@ jobs:
     - name: Deploy
       run: |
         gcloud container clusters get-credentials $GKE_CLUSTER \
-          --zone $GKE_ZONE \
+          --region $GKE_REGION \
           --project $PROJECT_ID
         helm upgrade --install $DEPLOYMENT_NAME-realworldapp $DEPLOYMENT_NAME \
           --set=image.tag=$GITHUB_SHA
