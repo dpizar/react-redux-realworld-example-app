@@ -5,7 +5,7 @@
 replicaCount: 2
 
 image:
-  repository: gcr.io//react-redux 
+  repository: gcr.io/dpizar-notepad-dev-1/react-redux 
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
