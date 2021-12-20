@@ -3,15 +3,15 @@
 2. A Dockerfile to build the React + Redux codebase into a container and push it to the GCP container registry(gcr.io) by our workflow.
 3. Kubernetes Deployment and Service manifests for deploying the React + Redux.
 4. Helm chart for deploying the React + Redux into GKE. This is used by our workflow.
-5. *Deploy realworld-app to GKE* workflow which packages the React + Redux application into a Dockerfile, pushes the image to the GCP container registry(gcr.io), and uses it to deploy the application into out infrastructure which already exists in our GCP account. Create with workflows in this repo: [gke_infrastructure-terraform](https://github.com/dpizar/dpizar_gke-infrastructure-terraform).
+5. *Deploy realworld-app to GKE* workflow which packages the React + Redux application into a Dockerfile, pushes the image to the GCP container registry(gcr.io), and uses it to deploy the application into out infrastructure which already exists in our GCP account. Created workflows in this repo: [gke_infrastructure-terraform](https://github.com/dpizar/dpizar_gke-infrastructure-terraform).
 
 # Instructions
 ## Prerequisites
 The GKE infrastructure should already be deployed, please follow this instructions: [gke_infrastructure-terraform](https://github.com/dpizar/dpizar_gke-infrastructure-terraform).
 
-Make sure your container registry host gcr.io is public, otherwise Helm won't be able to pull the React + Redux image. On your GCP account go to *Container Registry* -> *Settings* -> set Visibility to Public. You can set it back to Private once the applications has been deployed, or add the Service Account credentials to HELM(TODO).
+Make sure your container registry host gcr.io is public, otherwise Helm won't be able to pull the React + Redux image. On your GCP account go to *Container Registry* -> *Settings* -> set Visibility to Public. You can set it back to Private once the applications has been deployed, or add the Service Account credentials to HELM(This is something TODO in the future).
 
-## Ecable the following Google Cloud APIs
+## Enable the following Google Cloud APIs
 ```
 gcloud services enable container.googleapis.com
 gcloud services enable compute.googleapis.com 
@@ -28,8 +28,8 @@ GKE_SA_KEY
 GKE_PROJECT
 ```
 ## Deploy Application
-Make a change to any part of the code or manuallu trigger the workflow *Deploy realworld-app to GKE*.
-The React + Redux app should have been deployed to your GKE.
+Make a change to any part of the code or manually trigger the workflow *Deploy realworld-app to GKE*.
+The React + Redux app should have been deployed to your GKE cluster.
 
 ## Manually Deploying Application
 After the terraform infrastructure is up and running we can deploy our real world application.
