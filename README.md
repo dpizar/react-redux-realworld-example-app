@@ -1,3 +1,36 @@
+# This repostitory contains:
+1. React + Redux codebase that adheres to the RealWorld spec and API.
+2. A Dockerfile to build the React + Redux codebase into a container and push it to the GCP container registry(gcr.io) by our workflow.
+3. Kubernetes Deployment and Service manifests for deploying the React + Redux.
+4. Helm chart for deploying the React + Redux into GKE. This is used by our workflow.
+5. *Deploy realworld-app to GKE* workflow which packages the React + Redux application into a Dockerfile, pushes the image to the GCP container registry(gcr.io), and uses it to deploy the application into out infrastructure which already exists in our GCP account. Create with workflows in this repo: [gke_infrastructure-terraform](https://github.com/dpizar/dpizar_gke-infrastructure-terraform).
+
+# Instructions
+## Prerequisites
+The GKE infrastructure should already be deployed, please follow this instructions: [gke_infrastructure-terraform](https://github.com/dpizar/dpizar_gke-infrastructure-terraform).
+
+Make sure your container registry host gcr.io is public, otherwise Helm won't be able to pull the React + Redux image. On your GCP account go to *Container Registry* -> *Settings* -> set Visibility to Public. You can set it back to Private once the applications has been deployed, or add the Service Account credentials to HELM(TODO).
+
+## Ecable the following Google Cloud APIs
+```
+gcloud services enable container.googleapis.com
+gcloud services enable compute.googleapis.com 
+gcloud services enable cloudresourcemanager.googleapis.com
+```
+
+## Secrets
+1. Create a Service Account and follow the instructions [here](https://docs.github.com/en/actions/deployment/deploying-to-your-cloud-provider/deploying-to-google-kubernetes-engine) to convert credentials to base64 and store them in secret:
+```
+GKE_SA_KEY
+```
+2. Get your GCP project ID where your infrastructure was deployed and store it in secret:
+```
+GKE_PROJECT
+```
+## Deploy Application
+Make a change to any part of the code or manuallu trigger the workflow *Deploy realworld-app to GKE*.
+The React + Redux app should have been deployed to your GKE.
+
 # ![React + Redux Example App](project-logo.png)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/aa569c8f-ebd5-413e-9fb2-e34facc71873/deploy-status)](https://app.netlify.com/sites/react-redux-realworld/deploys)
 [![RealWorld Frontend](https://img.shields.io/badge/realworld-frontend-%23783578.svg)](http://realworld.io)
