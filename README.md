@@ -31,6 +31,25 @@ GKE_PROJECT
 Make a change to any part of the code or manuallu trigger the workflow *Deploy realworld-app to GKE*.
 The React + Redux app should have been deployed to your GKE.
 
+## Manually Deploying Application
+After the terraform infrastructure is up and running we can deploy our real world application.
+
+Clone this repository to your GCP account.
+Authenticate to cluster 
+```
+gcloud container clusters get-credentials gke-ycit-tformers-default-dev --region us-central1 
+```
+
+Navigate to folder react-redux-chart/
+Create a namespace, switch to create namespace and deploy helm chart.
+```
+kubectl create ns dev
+kubectl config set-context --current --namespace=dev
+
+# install helm chart, make sure the name is lowercase
+helm install react-redux-chart .
+```
+
 # ![React + Redux Example App](project-logo.png)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/aa569c8f-ebd5-413e-9fb2-e34facc71873/deploy-status)](https://app.netlify.com/sites/react-redux-realworld/deploys)
 [![RealWorld Frontend](https://img.shields.io/badge/realworld-frontend-%23783578.svg)](http://realworld.io)
