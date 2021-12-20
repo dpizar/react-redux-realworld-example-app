@@ -16,6 +16,7 @@ env:
   GKE_CLUSTER: gke-ycit-tformers-default-dev
   IMAGE: react-redux
   DEPLOYMENT_NAME: react-redux-chart    
+  SERVICE_ACCOUNT: ${{ secrets.GKE_SA_KEY }}
 
 # Environment variables available to all jobs and steps in this workflow
 
@@ -65,6 +66,6 @@ jobs:
           --region $GKE_REGION \
           --project $PROJECT_ID
         helm upgrade --install $DEPLOYMENT_NAME-realworldapp $DEPLOYMENT_NAME \
-          --set=imagePullSecrets.name=${{ secrets.GKE_SA_KEY }}
+          --set image.tag=$GITHUB_SHA,imagePullSecrets.name=$SERVICE_ACCOUNT
         kubectl rollout status deployment/$DEPLOYMENT_NAME-realworldapp
         kubectl get services -o wide
