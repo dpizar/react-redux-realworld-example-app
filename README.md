@@ -9,7 +9,7 @@
 ## Prerequisites
 The GKE infrastructure should already be deployed, please follow this instructions: [gke_infrastructure-terraform](https://github.com/dpizar/dpizar_gke-infrastructure-terraform).
 
-Make sure your container registry host gcr.io is public, otherwise Helm won't be able to pull the React + Redux image. On your GCP account go to *Container Registry* -> *Settings* -> set Visibility to Public. You can set it back to Private once the applications has been deployed, or add the Service Account credentials to HELM(This is something TODO in the future).
+**Make sure your container registry host gcr.io is public**, otherwise Helm won't be able to pull the React + Redux image. On your GCP account go to *Container Registry* -> *Settings* -> set Visibility to Public. You can set it back to Private once the applications has been deployed, or add the Service Account credentials to HELM(This is something TODO in the future).
 
 ## Enable the following Google Cloud APIs
 ```
